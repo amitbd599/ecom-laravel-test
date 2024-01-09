@@ -20,8 +20,8 @@ return new class extends Migration {
             $table->string('email', 50)->unique();
             // Relationship
             $table->foreign('email')->references('email')->on('users')->restrictOnDelete()->cascadeOnUpdate();
-            $table->timestamps('create_at')->useCurrent();
-            $table->timestamps('create_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamp('create_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

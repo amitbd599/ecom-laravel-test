@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,7 +12,19 @@ return new class extends Migration
     {
         Schema::create('product_details', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('img-1', 200);
+            $table->string('img-2', 200);
+            $table->string('img-3', 200);
+            $table->string('img-4', 200);
+            $table->longText('des');
+            $table->string('color', 200);
+            $table->string('size', 200);
+            // Relationship
+            $table->unsignedBigInteger('product_id')->unique();
+            $table->foreign('product_id')->references('id')->on('products')->restrictOnDelete()->restrictOnUpdate();
+
+            $table->timestamp('create_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

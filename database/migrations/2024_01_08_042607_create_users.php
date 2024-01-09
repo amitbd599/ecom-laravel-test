@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->string('email', 50)->unique();
             $table->string('otp', 10);
-            $table->timestamps('create_at')->useCurrent();
-            $table->timestamps('create_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamp('create_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

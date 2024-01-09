@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,7 +12,15 @@ return new class extends Migration
     {
         Schema::create('product_wishes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('email', 50);
+            $table->unsignedBigInteger('product_id');
+
+            $table->foreign('product_id')->references('id')->on('products')->restrictOnDelete()->restrictOnDelete();
+            $table->foreign('email')->references('email')->on('profiles')->restrictOnDelete()->restrictOnDelete();
+
+
+            $table->timestamp('create_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

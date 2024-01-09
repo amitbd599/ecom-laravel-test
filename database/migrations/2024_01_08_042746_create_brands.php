@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->string('brandName', 50);
             $table->string('brandImg', 300);
-            $table->timestamps('create_at')->useCurrent();
-            $table->timestamps('create_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamp('create_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

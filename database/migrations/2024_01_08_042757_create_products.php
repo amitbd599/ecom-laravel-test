@@ -20,7 +20,6 @@ return new class extends Migration {
             $table->string('image', 500);
             $table->boolean('stock');
             $table->float('star');
-            $table->timestamps();
             $table->enum('remark', ['popular, new, top, special,trading, regular']);
             // Foreign key
             $table->unsignedBigInteger('category_id');
@@ -28,8 +27,8 @@ return new class extends Migration {
             $table->foreign('category_id')->references('id')->on('categories')->restrictOnDelete()->cascadeOnUpdate();
             $table->foreign('brand_id')->references('id')->on('brands')->restrictOnDelete()->cascadeOnUpdate();
 
-            $table->timestamps('create_at')->useCurrent();
-            $table->timestamps('create_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamp('create_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
         });
     }
